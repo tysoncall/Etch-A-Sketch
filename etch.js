@@ -1,7 +1,7 @@
 // Select the elements on the page - canvas, shake button
-const canvas = document.querySelector("#etch-a-sketch");
-const ctx = canvas.getContext("2d");
-const shakebutton = document.querySelector(".shake");
+const canvas = document.querySelector('#etch-a-sketch');
+const ctx = canvas.getContext('2d');
+const shakebutton = document.querySelector('.shake');
 const MOVE_AMOUNT = 50;
 // Setup our canvas for drawing
 // make a variable called height and width from the same properties on our canvas.
@@ -11,8 +11,8 @@ let x = Math.floor(Math.random() * width);
 let y = Math.floor(Math.random() * height);
 // create random x and y starting points on the canvas
 
-ctx.lineJoin = "round";
-ctx.lineCap = "round";
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
 ctx.lineWidth = MOVE_AMOUNT;
 
 let hue = 0;
@@ -34,16 +34,16 @@ function draw({ key }) {
   ctx.moveTo(x, y);
   // move our x and y values depending on what the user did
   switch (key) {
-    case "ArrowUp":
+    case 'ArrowUp':
       y -= MOVE_AMOUNT;
       break;
-    case "ArrowRight":
+    case 'ArrowRight':
       x += MOVE_AMOUNT;
       break;
-    case "ArrowDown":
+    case 'ArrowDown':
       y += MOVE_AMOUNT;
       break;
-    case "ArrowLeft":
+    case 'ArrowLeft':
       x -= MOVE_AMOUNT;
       break;
     default:
@@ -55,25 +55,25 @@ function draw({ key }) {
 
 // write a handler for the keys
 function handleKey(e) {
-  if (e.key.includes("Arrow")) {
+  if (e.key.includes('Arrow')) {
     e.preventDefault();
     draw({ key: e.key });
   }
 }
 // clear /shke function
 function clearCanvas() {
-  canvas.classList.add("shake");
+  canvas.classList.add('shake');
   ctx.clearRect(0, 0, width, height);
   canvas.addEventListener(
-    "animationend",
+    'animationend',
     function() {
-      console.log("Done the shake!");
-      canvas.classList.remove("shake");
+      console.log('Done the shake!');
+      canvas.classList.remove('shake');
     },
     { once: true }
   );
 }
 
 // listen for arrow keys
-window.addEventListener("keydown", handleKey);
-shakebutton.addEventListener("click", clearCanvas);
+window.addEventListener('keydown', handleKey);
+shakebutton.addEventListener('click', clearCanvas);
